@@ -1,43 +1,45 @@
-const Benchmark = require("../../lib/Benchmark");
+const Benchmark = require('../../lib/Benchmark')
 
-function execForOf(array) {
+function execForOf (array) {
   return () => {
-    const result = [];
+    const result = []
     for (const x of array) {
-      result.push(Math.random() * x);
+      result.push(Math.random() * x)
     }
-    return result;
-  };
+    return result
+  }
 }
 
-function execMap(array) {
-  return () => array.map((x) => Math.random() * x);
+function execMap (array) {
+  return () => array.map((x) => Math.random() * x)
 }
 
-function execProceduralFor(array) {
+function execProceduralFor (array) {
   return () => {
-    const result = [];
+    const result = []
     for (let i = 0, max = array.length; i < max; i++) {
-      result.push(Math.random() * array[i]);
+      result.push(Math.random() * array[i])
     }
-    return result;
-  };
+    return result
+  }
 }
 
-function execSuite(numberOfElements) {
+function execSuite (numberOfElements) {
   const suite = new Benchmark(
-    `Transforming arrays with ${numberOfElements} elements`
-  );
+    `Transforming array with ${numberOfElements} elements`
+  )
 
-  const bigArray = Array(numberOfElements).fill(10);
+  const bigArray = Array(numberOfElements).fill(10)
 
   suite
-    .add("For of", execForOf(bigArray))
-    .add("Array.map", execMap(bigArray))
-    .add("Procedural for", execProceduralFor(bigArray))
-    .printResults();
+    .add('For of', execForOf(bigArray))
+    .add('Array.map', execMap(bigArray))
+    .add('Procedural for', execProceduralFor(bigArray))
+    .printResults()
 }
 
-execSuite(100000);
-execSuite(10000);
-execSuite(1000);
+execSuite(100)
+execSuite(1000)
+execSuite(10000)
+execSuite(100000)
+execSuite(500000)
