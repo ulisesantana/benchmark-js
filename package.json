@@ -19,7 +19,8 @@
   },
   "homepage": "https://github.com/ulisesantana/benchmark-js#readme",
   "dependencies": {
-    "benchmarkjs": "^0.1.8"
+    "benchmarkjs": "^0.1.8",
+    "faker": "^5.5.3"
   },
   "devDependencies": {
     "eslint": "^7.11.0",
