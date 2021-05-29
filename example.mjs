@@ -1,4 +1,4 @@
-const Benchmark = require('./lib/Benchmark')
+import {Benchmark} from './lib/Benchmark.mjs'
 
 const suite = new Benchmark('Extending array')
 suite.options({

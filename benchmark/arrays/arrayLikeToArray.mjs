@@ -1,4 +1,4 @@
-const Benchmark = require('../../lib/Benchmark')
+import { Benchmark } from '../../lib/Benchmark.mjs'
 
 function arrangeSet (numberOfElements) {
   const testSet = new Set()

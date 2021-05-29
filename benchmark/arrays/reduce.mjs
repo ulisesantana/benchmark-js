@@ -1,5 +1,5 @@
-const Benchmark = require('../../lib/Benchmark')
-const { generateTransactions } = require('../tools/generateTransactions')
+import {Benchmark} from '../../lib/Benchmark.mjs'
+import { generateTransactions, addThousandSeparator } from '../tools/index.mjs'
 
 function execForOf (transactions) {
   return () => {
@@ -29,14 +29,21 @@ function execProceduralFor (transactions) {
   }
 }
 
-const amountOfTransactions = process.argv[2] || 1_000_000
-const transactions = generateTransactions(amountOfTransactions)
-const suite = new Benchmark(
-  `Transforming array. Computing ${amountOfTransactions} transactions`
-)
+function execSuite (amountOfTransactions) {
+  const transactions = generateTransactions(amountOfTransactions)
+  const suite = new Benchmark(
+    `Transforming array. Computing ${addThousandSeparator(amountOfTransactions)} transactions`
+  )
 
-suite
-  .add('For of', execForOf(transactions))
-  .add('Array.reduce', execReduce(transactions))
-  .add('Procedural for', execProceduralFor(transactions))
-  .printResults()
+  suite
+    .add('For of', execForOf(transactions))
+    .add('Array.reduce', execReduce(transactions))
+    .add('Procedural for', execProceduralFor(transactions))
+    .printResults()
+}
+
+execSuite(100)
+execSuite(1_000)
+execSuite(10_000)
+execSuite(100_000)
+execSuite(1_000_000)
