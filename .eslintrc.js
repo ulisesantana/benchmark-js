@@ -4,7 +4,8 @@ module.exports = {
     es6: true
   },
   parserOptions: {
-    ecmaVersion: 2020
+    ecmaVersion: 2021,
+    sourceType: 'module'
   },
   extends: ['standard']
 }

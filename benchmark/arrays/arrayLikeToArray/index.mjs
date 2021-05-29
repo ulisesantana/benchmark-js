@@ -1,4 +1,5 @@
-import { Benchmark } from '../../lib/Benchmark.mjs'
+import { Benchmark } from '../../../lib/Benchmark.mjs'
+import { addThousandSeparator } from '../../tools/index.mjs'
 
 function arrangeSet (numberOfElements) {
   const testSet = new Set()
@@ -31,7 +32,7 @@ function execSpreadOperator (numberOfElements) {
 
 function execSuite (numberOfElements) {
   const suite = new Benchmark(
-      `Converting array-like object with ${numberOfElements} elements to array`
+      `Converting array-like object with ${addThousandSeparator(numberOfElements)} elements to array`
   )
 
   suite
@@ -42,7 +43,7 @@ function execSuite (numberOfElements) {
 }
 
 execSuite(100)
-execSuite(1000)
-execSuite(10000)
-execSuite(100000)
-execSuite(500000)
+execSuite(1_000)
+execSuite(10_000)
+execSuite(100_000)
+execSuite(1_000_000)

@@ -1,5 +1,5 @@
-import {Benchmark} from '../../lib/Benchmark.mjs'
-import { generateTransactions, addThousandSeparator } from '../tools/index.mjs'
+import { Benchmark } from '../../../lib/Benchmark.mjs'
+import { generateTransactions, addThousandSeparator } from '../../tools/index.mjs'
 
 function execForOf (transactions) {
   return () => {

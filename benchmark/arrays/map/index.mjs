@@ -1,4 +1,5 @@
-import { Benchmark } from '../../lib/Benchmark.mjs'
+import { Benchmark } from '../../../lib/Benchmark.mjs'
+import { addThousandSeparator } from '../../tools/index.mjs'
 
 function execForOf (array) {
   return () => {
@@ -26,7 +27,7 @@ function execProceduralFor (array) {
 
 function execSuite (numberOfElements) {
   const suite = new Benchmark(
-    `Mapping array with ${numberOfElements} elements`
+    `Mapping array with ${addThousandSeparator(numberOfElements)} elements`
   )
 
   const bigArray = Array(numberOfElements).fill(10)
@@ -39,7 +40,7 @@ function execSuite (numberOfElements) {
 }
 
 execSuite(100)
-execSuite(1000)
-execSuite(10000)
-execSuite(100000)
-execSuite(500000)
+execSuite(1_000)
+execSuite(10_000)
+execSuite(100_000)
+execSuite(1_000_000)
