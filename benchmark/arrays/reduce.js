@@ -32,7 +32,7 @@ function execProceduralFor (transactions) {
 const amountOfTransactions = process.argv[2] || 1_000_000
 const transactions = generateTransactions(amountOfTransactions)
 const suite = new Benchmark(
-  `Computing ${amountOfTransactions} transactions`
+  `Transforming array. Computing ${amountOfTransactions} transactions`
 )
 
 suite

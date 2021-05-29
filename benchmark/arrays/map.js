@@ -26,7 +26,7 @@ function execProceduralFor (array) {
 
 function execSuite (numberOfElements) {
   const suite = new Benchmark(
-    `Transforming array with ${numberOfElements} elements`
+    `Mapping array with ${numberOfElements} elements`
   )
 
   const bigArray = Array(numberOfElements).fill(10)
