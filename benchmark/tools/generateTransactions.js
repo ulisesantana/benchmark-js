@@ -1,10 +1,9 @@
-const fs = require('fs')
 const faker = require('faker')
 
-function generateOneMillionOfTransactions() {
+function generateTransactions(amountOfTransactions) {
     const data = []
 
-    for (let i = 1; i <= 1_000_000; i++) {
+    for (let i = 1; i <= amountOfTransactions; i++) {
         data.push(faker.helpers.createTransaction())
         if (i % 10_000 === 0) {
             console.log(`[${new Date().toISOString()}] Generated ${i} transactions.`)
@@ -14,5 +13,5 @@ function generateOneMillionOfTransactions() {
     return data
 }
 
-module.exports = { generateOneMillionOfTransactions}
+module.exports = { generateTransactions}
 

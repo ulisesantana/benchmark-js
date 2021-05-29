@@ -1,39 +1,39 @@
 const Benchmark = require('../../lib/Benchmark')
-const { generateOneMillionOfTransactions } = require('../tools/generateOneMillionOfTransactions')
+const { generateTransactions } = require('../tools/generateTransactions')
 
-function execForOf (array) {
+function execForOf (transactions) {
   return () => {
     const report = {}
-    for (const { amount, type } of array) {
+    for (const { amount, type } of transactions) {
       report[type] = report[type] ? report[type] + amount : amount
     }
     return report
   }
 }
 
-function execReduce (array) {
-  return () => array.reduce((report, { amount, type }) => ({
-    ...report,
-    [type]: report[type] ? report[type] + amount : amount
-  }), {})
+function execReduce (transactions) {
+  return () => transactions.reduce((report, { amount, type }) => {
+    report[type] = report[type] ? report[type] + amount : amount
+    return report
+  }, {})
 }
 
-function execProceduralFor (array) {
+function execProceduralFor (transactions) {
   return () => {
     const report = {}
-    for (let i = 0, max = array.length; i < max; i++) {
-      const { amount, type } = array[i]
+    for (let i = 0, max = transactions.length; i < max; i++) {
+      const { amount, type } = transactions[i]
       report[type] = report[type] ? report[type] + amount : amount
     }
     return report
   }
 }
 
+const amountOfTransactions = process.argv[2] || 1_000_000
+const transactions = generateTransactions(amountOfTransactions)
 const suite = new Benchmark(
-  'Computing 1.000.000 transactions'
+  `Computing ${amountOfTransactions} transactions`
 )
-
-const transactions = generateOneMillionOfTransactions()
 
 suite
   .add('For of', execForOf(transactions))
